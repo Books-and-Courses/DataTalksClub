@@ -14,6 +14,7 @@ What's the version of pip in the image?
 
 Given the following docker-compose.yaml, what is the hostname and port that pgadmin should use to connect to the postgres database?
 
+```
 services:
   db:
     container_name: postgres
@@ -45,9 +46,9 @@ volumes:
 
     postgres:5433
     localhost:5432
-    db:5433
+    ***db:5432***
     postgres:5432
-***db:5432***
+```
 
 Prepare Postgres
 
@@ -74,6 +75,7 @@ During the period of October 1st 2019 (inclusive) and November 1st 2019 (exclusi
     In between 7 (exclusive) and 10 miles (inclusive),
     Over 10 miles
 
+```
 select count(lpep_pickup_datetime) as count,
   from green
   where
@@ -85,6 +87,8 @@ select count(lpep_pickup_datetime) as count,
 ├────────┤
 │ 199013 │
 └────────┘
+```
+
 D select count(lpep_pickup_datetime) as count,
   from green
   where
@@ -125,7 +129,7 @@ Answers:
     104,802; 198,924; 109,603; 27,678; 35,189
     104,793; 201,407; 110,612; 27,831; 35,281
     104,793; 202,661; 109,603; 27,678; 35,189
-   ***104,838; 199,013; 109,645; 27,688; 35,202***
+    ***104,838; 199,013; 109,645; 27,688; 35,202***
 
 
 # Question 4. Longest trip for each day
@@ -147,7 +151,7 @@ select lpep_pickup_datetime, max(trip_distance)
 
 Tip: For every day, we only care about one single trip with the longest distance.
 
-   ***2019-10-11***
+    ***2019-10-11***
     2019-10-24
     2019-10-26
     2019-10-31
@@ -228,7 +232,7 @@ SELECT
 
 
     Yorkville West
-   ***JFK Airport***
+    ***JFK Airport***
     East Harlem North
     East Harlem South
 
