@@ -4,7 +4,7 @@ Run docker with the python:3.12.8 image in an interactive mode, use the entrypoi
 
 What's the version of pip in the image?
 
-    24.3.1
+   `24.3.1`
     24.2.1
     23.3.1
     23.2.1
@@ -185,11 +185,50 @@ Consider only lpep_pickup_datetime when filtering by date.
 For the passengers picked up in October 2019 in the zone named "East Harlem North" which was the drop off zone that had the largest tip?
 
 Note: it's tip , not trip
-
 We need the name of the zone, not the ID.
 
+```
+SELECT
+      green.lpep_pickup_datetime,
+      green.trip_distance,
+      green.fare_amount,
+      green.tip_amount,
+      dropoff_zones.Zone
+  FROM
+      green
+  JOIN
+      zones AS pickup_zones ON green.PULocationID = pickup_zones.LocationID
+  JOIN
+      zones AS dropoff_zones ON green.DOLocationID = dropoff_zones.LocationID
+  WHERE
+      pickup_zones.Zone = 'East Harlem North'
+      AND MONTH(green.lpep_pickup_datetime) = 10
+      AND YEAR(green.lpep_pickup_datetime) = 2019
+  ORDER BY
+      green.tip_amount DESC
+  LIMIT 10;
+┌──────────────────────┬───────────────┬─────────────┬────────────┬───────────────────────┐
+│ lpep_pickup_datetime │ trip_distance │ fare_amount │ tip_amount │         Zone          │
+│      timestamp       │    double     │   double    │   double   │        varchar        │
+├──────────────────────┼───────────────┼─────────────┼────────────┼───────────────────────┤
+│ 2019-10-25 15:50:05  │         17.01 │        52.0 │       87.3 │ JFK Airport           │
+│ 2019-10-28 06:05:56  │          1.45 │         6.0 │      80.88 │ Yorkville West        │
+│ 2019-10-24 14:35:52  │          0.02 │         2.5 │       40.0 │ East Harlem North     │
+│ 2019-10-01 00:42:36  │           0.0 │         2.5 │       35.0 │ East Harlem North     │
+│ 2019-10-20 15:14:27  │         26.61 │        93.0 │      26.45 │ Newark Airport        │
+│ 2019-10-11 07:22:48  │          17.2 │        47.5 │       20.0 │ JFK Airport           │
+│ 2019-10-31 13:51:23  │          2.48 │        18.0 │      18.45 │ Upper East Side North │
+│ 2019-10-14 09:44:20  │         17.11 │        52.0 │      17.68 │ JFK Airport           │
+│ 2019-10-19 16:55:24  │          16.8 │        52.0 │      17.68 │ JFK Airport           │
+│ 2019-10-19 13:19:46  │          17.9 │        52.0 │      17.65 │ JFK Airport           │
+├──────────────────────┴───────────────┴─────────────┴────────────┴───────────────────────┤
+│ 10 rows                                                                       5 columns │
+└─────────────────────────────────────────────────────────────────────────────────
+```
+
+
     Yorkville West
-    JFK Airport
+   `JFK Airport`
     East Harlem North
     East Harlem South
 
