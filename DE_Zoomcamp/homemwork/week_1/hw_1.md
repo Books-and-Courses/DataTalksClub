@@ -88,7 +88,7 @@ select count(lpep_pickup_datetime) as count,
 │ 199013 │
 └────────┘
 ```
-
+```
 D select count(lpep_pickup_datetime) as count,
   from green
   where
@@ -100,6 +100,8 @@ D select count(lpep_pickup_datetime) as count,
 ├────────┤
 │ 109645 │
 └────────┘
+```
+```
 D select count(lpep_pickup_datetime) as count,
   from green
   where
@@ -111,6 +113,8 @@ D select count(lpep_pickup_datetime) as count,
 ├───────┤
 │ 27688 │
 └───────┘
+```
+```
 D select count(lpep_pickup_datetime) as count,
   from green
   where
@@ -121,7 +125,7 @@ D select count(lpep_pickup_datetime) as count,
 ├───────┤
 │ 35202 │
 └───────┘
-
+```
 
 Answers:
 
@@ -135,7 +139,7 @@ Answers:
 # Question 4. Longest trip for each day
 
 Which was the pick up day with the longest trip distance? Use the pick up time for your calculations.
-
+```
 select lpep_pickup_datetime, max(trip_distance)
   from green
   where lpep_pickup_datetime in ('2019-10-11','2019-10-24', '2019-10-26', '2019-10-31')
@@ -148,7 +152,7 @@ select lpep_pickup_datetime, max(trip_distance)
 │ 2019-10-11 00:00:00  │              18.03 │
 │ 2019-10-31 00:00:00  │              10.52 │
 └──────────────────────┴────────────────────┘
-
+```
 Tip: For every day, we only care about one single trip with the longest distance.
 
     ***2019-10-11***
@@ -188,7 +192,7 @@ Consider only lpep_pickup_datetime when filtering by date.
 
 For the passengers picked up in October 2019 in the zone named "East Harlem North" which was the drop off zone that had the largest tip?
 
-Note: it's tip , not trip
+Note: it's tip, not trip
 We need the name of the zone, not the ID.
 
 ```
@@ -229,14 +233,13 @@ SELECT
 │ 10 rows                                                                       5 columns │
 └─────────────────────────────────────────────────────────────────────────────────
 ```
-
-
     Yorkville West
     ***JFK Airport***
     East Harlem North
     East Harlem South
 
-Terraform
+
+# Terraform
 
 In this section homework we'll prepare the environment by creating resources in GCP with Terraform.
 
@@ -258,6 +261,6 @@ Answers:
     terraform import, terraform apply -y, terraform destroy
     teraform init, terraform plan -auto-apply, terraform rm
     terraform init, terraform run -auto-approve, terraform destroy
-    terraform init, terraform apply -auto-approve, terraform destroy
+    ***terraform init, terraform apply -auto-approve, terraform destroy***
     terraform import, terraform apply -y, terraform rm
 
